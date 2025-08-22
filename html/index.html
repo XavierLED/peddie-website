@@ -4,12 +4,14 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Recipe Maker</title>
-        <link href="../static/css/styles.css" rel="stylesheet">
+        <link href="/css/styles.css" rel="stylesheet">
     </head>
     <body>
         <h3>Start entering your ingredients :)</h3>
-        <input type"text">
-        <button onclick="">enter ingredient</button><br>
+        <form method="POST" action="{{ url_for('index') }}">
+            <input type"text" name="ingredients">
+            <button onclick="">enter ingredient</button><br>
+        </form>
 
         <ul>
             {% for item in mylist%}

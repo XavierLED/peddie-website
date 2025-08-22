@@ -1,15 +1,22 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from google import genai
 from pydantic import BaseModel 
 from rapidfuzz import process, fuzz
 import json
 
-app = Flask(__name__, template_folder='html')
+app = Flask(__name__, template_folder='html', static_folder='static', static_url_path='/')
 
-@app.route('/')
+mylist = []
+
+@app.route('/', methods=['GET', 'POST'])
 def index():
-    mylist = ["temp list"]
-    return render_template('index.html', mylist=mylist)
+    if request.method == 'GET':
+        return render_template('index.html', mylist=mylist)
+    else:
+        ingredients = request.form['ingredients']
+        mylist.append(ingredients)
+        return render_template('index.html', mylist=mylist)
+
 
 
 
