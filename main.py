@@ -1,13 +1,19 @@
-from flask import Flask
+from flask import Flask, render_template
 from google import genai
 from pydantic import BaseModel 
 from rapidfuzz import process, fuzz
 import json
 
-def main():
-    number_people=input("# of people: ")
-    ingredients=input("ingredients with amounts: ")
-    modifers=input("Culinary Style, Nutritional Requirments, Preperation Method, Alergies, Other Modifiers")
+app = Flask(__name__, template_folder='html')
+
+@app.route('/')
+def index():
+    mylist = ["temp list"]
+    return render_template('index.html', mylist=mylist)
+
+
+
+def main(number_people, ingredients, modifers):
 
     if modifers!="":    
         prompt=f"""I need suggestions for dishes for this many people: {number_people}, 
@@ -81,6 +87,7 @@ def main():
         },
     )
     # Use the response as a JSON string.
-    print(response.text)
+    return response.text
 
-main()
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', debug=True)

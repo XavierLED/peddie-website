@@ -10,6 +10,13 @@
         <h3>Start entering your ingredients :)</h3>
         <input type"text">
         <button onclick="">enter ingredient</button><br>
+
+        <ul>
+            {% for item in mylist%}
+            <li> {{ item }}</li>
+            {% endfor %}
+        </ul><br>
+
         <button onclick="generate">Generate Recipe</button>
     </body>
 </html>
