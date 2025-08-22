@@ -1,0 +1,10 @@
+html
+    ask how many people 
+    how many ingredients and amount of ingredients
+    optional a type of food you want/craving
+
+css
+
+python
+    generate an in depth response from the html
+js
