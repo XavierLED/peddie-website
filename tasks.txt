@@ -4,7 +4,7 @@ html
     optional a type of food you want/craving
 
 css
+    theme is dark grey and purple
 
-python
-    generate an in depth response from the html
 js
+    make loading animation for when its generating
