@@ -21,7 +21,9 @@ body {
   color: var(--ink);
   font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, sans-serif;
   display: flex;
-  justify-content: center;
+  flex-direction:column;       /* <-- stack */
+  align-items:center;          /* center horizontally if you like */
+  gap:24px;       
 }
 
 .card {

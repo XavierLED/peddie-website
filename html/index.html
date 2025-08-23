@@ -12,7 +12,9 @@
         <form method="POST" action="{{ url_for('index') }}">
             <input type"text" name="number_people">
             <input type="submit" name = "button_number" value="enter number of people"><br>
-
+            <ul>
+                <li> {{ number }}</li>
+            </ul><br>
             <input type"text" name="ingredients">
             <input type="submit" name = "button_ingredient" value="enter ingredients"><br>
             <ul>
@@ -31,7 +33,52 @@
             <input type="submit" name="button_generate" value="Generate Recipe"><br>
         </form>
         {% if response != 0 %}
-        <p>{{ response }}</p>
+        <ul>
+            {% for dish in response %}
+            <li>
+                <strong>{{ dish.dish_name }}</strong>
+                <ul>
+                {% for ing in dish.valid_ingredients %}
+                    <li>{{ ing }}</li>
+                {% endfor %}
+                </ul>
+            </li>
+            {% endfor %}
+        </ul>
         {% endif %}
+        
+    
+    
+    <section class="card" role="document" aria-label="Recipe card">
+    <h1 class="title">RECIPE</h1>
+
+    <div class="meta">
+
+      <div class="field">
+        <span class="label">Title</span>
+        <span class="dots"></span>
+      </div>
+
+
+      <div class="field">
+        <span class="label">Serves</span>
+        <span class="dots"></span>
+      </div>
+
+
+
+    </div>
+
+    <div class="ingredients-header" aria-hidden="true">
+      <div class="leader"></div>
+      <div>Ingredients</div>
+      <div class="leader"></div>
+    </div>
+
+    <div class="ruled">
+      <div class="column"></div>
+      <div class="column"></div>
+    </div>
+  </section>
     </body>
 </html>

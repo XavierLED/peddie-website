@@ -19,12 +19,12 @@ def index():
     else:
 
         if 'button_ingredient' in request.form:
-            ingredients = request.form['ingredients']
-            mylist.append(ingredients)
+            ingredients = request.form['ingredients'].strip()
+            mylist=[ingredients]
 
         elif 'button_mods' in request.form:
-                mod = request.form['mod']
-                mods.append(mod)
+                mod = request.form['mod'].strip()
+                mods=[mod]
             
         elif 'button_number' in request.form:
             number = request.form['number_people']
@@ -32,7 +32,7 @@ def index():
         elif 'button_generate' in request.form:
             response = main(number, mylist, mods)
 
-        return render_template('index.html', mylist=mylist, mods=mods, response=response, numbe=number)
+        return render_template('index.html', mylist=mylist, mods=mods, response=response, number=number)
 
 
 def main(number_people, ingredients, modifers):
@@ -43,17 +43,17 @@ def main(number_people, ingredients, modifers):
         I have these requirments of the dish as well: {modifers},
         show ammounts as well if not amounts were given for ingredients then create ammounts based on the amount of people, 
         assume user has basic spices or also include alternative spices where possible, 
-        show me at leaste more than 3 dishes but less than 10"""
+        show me 4 dishes"""
     else:
         prompt=f"""i need suggestions for dishes for this many people: {number_people}, 
         i have these indredients with their ammounts: {ingredients}, 
         show ammounts as well if not amounts were given for ingredients then create ammounts based on the amount of people, 
         assume user has basic spices or also include alternative spices where possible, 
-        show me at leaste more than 3 dishes but less than 10"""
+        show me 4 dishes"""
 
     class Dish(BaseModel):
         dish_name: str
-        valid_ingreients: list[str]
+        valid_ingredients: list[str]
 
     client = genai.Client()
     response = client.models.generate_content(
