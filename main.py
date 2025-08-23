@@ -8,28 +8,31 @@ app = Flask(__name__, template_folder='html', static_folder='static', static_url
 
 mylist = []
 mods = []
-number = 1
+number = ""
 response = ""
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
+    global mylist, mods, number, response
     if request.method == 'GET':
         return render_template('index.html', mylist=mylist, mods=mods)
     else:
+
         if 'button_ingredient' in request.form:
             ingredients = request.form['ingredients']
             mylist.append(ingredients)
-            return render_template('index.html', mylist=mylist, mods=mods)
 
         elif 'button_mods' in request.form:
                 mod = request.form['mod']
                 mods.append(mod)
-                return render_template('index.html', mylist=mylist, mods=mods)
+            
+        elif 'button_number' in request.form:
+            number = request.form['number_people']
+
         elif 'button_generate' in request.form:
             response = main(number, mylist, mods)
-            return render_template('index.html', mylist=mylist, mods=mods, response=response)
-        else:
-            return render_template('index.html', mylist=mylist, mods=mods, response=response)
+
+        return render_template('index.html', mylist=mylist, mods=mods, response=response, numbe=number)
 
 
 def main(number_people, ingredients, modifers):
