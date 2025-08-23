@@ -110,7 +110,6 @@ def pick_dish(dish_picked,response,number):##dish picked is an int 0 in top left
         },
     )
     # Use the response as a JSON string.
-    print(response.text)
     data=json.loads(response.text)
     return data
 

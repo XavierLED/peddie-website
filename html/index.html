@@ -40,53 +40,52 @@
         </form>
       </div>
 
-        <div class="results">
-    <div>
-      {% if number %}
-        <p><strong>People:</strong> {{ number }}</p>
-      {% endif %}
-    </div>
+    <div class="results">
+      <div>
+        {% if number %}
+          <p><strong>People:</strong> {{ number }}</p>
+        {% endif %}
+      </div>
 
-    <div>
-      {% if mylist %}
-        <strong>Ingredients:</strong>
-        <ul>
-          {% for item in mylist[0].split(",") %}
-            <li>{{ item }}</li>
-          {% endfor %}
-        </ul>
-      {% endif %}
-    </div>
+      <div>
+        {% if mylist %}
+          <strong>Ingredients:</strong>
+          <ul>
+            {% for item in mylist[0].split(",") %}
+              <li>{{ item }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </div>
 
-    <div>
-      {% if mods %}
-        <strong>Modifications:</strong>
-        <ul>
-          {% for item in mods[0].split(",") %}
-            <li>{{ item }}</li>
-          {% endfor %}
-        </ul>
-      {% endif %}
+      <div>
+        {% if mods %}
+          <strong>Modifications:</strong>
+          <ul>
+            {% for item in mods[0].split(",") %}
+              <li>{{ item }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </div>
     </div>
-  </div>
-</div>
-        <section class="recipes-grid">
-        {% for dish in response[:4] %}
-            <article class="recipe-card">
-            <form method="POST" action="{{ url_for('index') }}" class="header-form">
-            <button name="this_dish" value={{ loop.index0 }}>{{ dish.dish_name }}</button>
-            </form>
+    
+    <div class="recipes-grid">
+      {% for dish in response %}
+        <form method="POST" action="{{ url_for('index') }}">
+          <!-- one clickable card -->
+          <button type="submit" name="this_dish" value="{{ loop.index0 }}" class="recipe-card">
             <h3 class="recipe-title">{{ dish.dish_name }}</h3>
             <ul class="recipe-ings">
-                {% for ing in (dish.valid_ingredients or []) %}
+              {% for ing in dish.valid_ingredients %}
                 <li>{{ ing }}</li>
-                {% endfor %}
+              {% endfor %}
             </ul>
-            </article>
-        {% endfor %}
-        </section>
+          </button>
+        </form>
+      {% endfor %}
+      </div>
         
-    
     
     <section class="card" role="document" aria-label="Recipe card">
     <h1 class="title">RECIPE</h1>
@@ -95,17 +94,19 @@
 
       <div class="field">
         <span class="label">Title</span>
-        <span class="dots"></span>
+        <span class="dots">
+        {%if recipe != ""%}
+        <span class="value">{{ recipe[0].dish }}</span>
+        {%endif%}
+        </span>
       </div>
-
 
       <div class="field">
         <span class="label">Serves</span>
-        <span class="dots"></span>
+        <span class="dots">
+        <span class="value">{{ number }}</span>
+        </span>
       </div>
-
-
-
     </div>
 
     <div class="ingredients-header" aria-hidden="true">
@@ -115,10 +116,26 @@
     </div>
 
     <div class="ruled">
-      <div class="column"></div>
-      <div class="column"></div>
-    </div>
+      <div class="column">
+      <ul>
+        {%if recipe!= ""%}
+      {% for ing in (recipe[0].valid_ingredients or []) %}
+      <li>{{ ing }}</li>
+      {% endfor %}
+      {%endif%}
+      </ul>
+      </div>
+
+      <div class="column">
+      <ul>
+        {%if recipe!= ""%}
+      {% for steps in (recipe[0].recipe or []) %}
+      <li>{{ steps }}</li>
+      {% endfor %}
+      {%endif%}
+      </ul>
+      </div>
+      </div>
   </section>
-<p>{{ recipe }}</p>
-    </body>
+  </body>
 </html>
