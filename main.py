@@ -10,6 +10,7 @@ mylist = ""
 mods = ""
 number = ""
 response = ""
+recipe = ""
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -42,8 +43,9 @@ def index():
         elif 'button_generate' in request.form:
             if mylist != "" and number != "":
                 response = main(number, mylist, mods)
-        elif 'this_dish' in request.form:
-            print("hello")
+
+        elif request.form['this_dish']:
+            recipe = pick_dish(request.form['this_dish'])
 
         return render_template('index.html', mylist=mylist, mods=mods, response=response, number=number)
 
@@ -83,7 +85,7 @@ def main(number_people, ingredients, modifers):
 
     data=json.loads(response.text)
     return data
-def pick_dish():
+def pick_dish(dish_picked):##dish picked is an int 0 in top left 3 in bottom right
     valid_dish=False
     while valid_dish==False:
         dish=input("From list choose dish: ")
