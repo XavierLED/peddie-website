@@ -229,3 +229,30 @@ header {
   color:#000000;
   gap: 40px;   /* spacing between the sections */
 }
+
+.loader-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.pizza {
+    width: 50px;
+    height: 50px;
+    animation: rotate 10s linear infinite;
+}
+
+.pizza img {
+    width: 100%;
+    height: 100%;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
