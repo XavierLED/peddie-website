@@ -266,6 +266,7 @@ header {
 .results {
   display: flex;
   color:#000000;
-  gap: 40px;   
+  justify-content: space-between;
+  gap: 170px;   
 }
 
