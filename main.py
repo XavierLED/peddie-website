@@ -42,7 +42,7 @@ def index():
 
         elif 'button_generate' in request.form:
             if mylist != "" and number != "":
-                response = main(number, mylist, mods)
+                response = get_dishes(number, mylist, mods)
 
         elif 'this_dish' in request.form:
             recipe = pick_dish(request.form['this_dish'],response,number)
@@ -50,7 +50,7 @@ def index():
         return render_template('index.html', mylist=mylist, mods=mods, response=response, number=number, recipe=recipe)
 
 
-def main(number_people, ingredients, modifers):
+def get_dishes(number_people, ingredients, modifers):
 
     if modifers!="":    
         prompt=f"""I need suggestions for dishes for this many people: {number_people}, 
