@@ -16,7 +16,7 @@ recipe = ""
 def index():
     global mylist, mods, number, response, recipe
     if request.method == 'GET':
-        return render_template('index.html', mylist=mylist, mods=mods, number=number, response=response)
+        return render_template('index.html', mylist=mylist, mods=mods, number=number, response=response, recipe=recipe)
 
     else:
             
@@ -44,10 +44,10 @@ def index():
             if mylist != "" and number != "":
                 response = main(number, mylist, mods)
 
-        elif request.form['this_dish']:
+        elif 'this_dish' in request.form:
             recipe = pick_dish(request.form['this_dish'],response,number)
 
-        return render_template('index.html', mylist=mylist, mods=mods, response=response, number=number)
+        return render_template('index.html', mylist=mylist, mods=mods, response=response, number=number, recipe=recipe)
 
 
 def main(number_people, ingredients, modifers):
@@ -85,6 +85,9 @@ def main(number_people, ingredients, modifers):
     return data
 
 def pick_dish(dish_picked,response,number):##dish picked is an int 0 in top left 3 in bottom right
+    dish_name = "Unknown dish"
+    ingredients = []
+
     if response != "":
         selected = response[int(dish_picked)]
         dish_name = selected["dish_name"]
