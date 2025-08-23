@@ -4,60 +4,66 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Recipe Maker</title>
-        <link href="/css/styles.css" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Caveat" rel="stylesheet">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
     </head>
-    <body>
-        <h3>Start entering your ingredients :)</h3>
+      <div class="app-header">
+        <form method="POST" action="{{ url_for('index') }}" class="header-form">
 
-        <form method="POST" action="{{ url_for('index') }}">
-  <div class="input-container">
+          <div class="header-item">
+            <input type="text" name="number_people" placeholder="Number of people">
+            <input type="submit" name="button_number" value="Enter">
+          </div>
 
-    <div class="input-group">
-      <div class="input-row">
-        <input type="text" name="number_people">
-        <input type="submit" name="button_number" value="enter number of people">
+          <div class="header-item">
+            <input type="text" name="ingredients" placeholder="Ingredients">
+            <input type="submit" name="button_ingredient" value="Enter">
+          </div>
+
+          <div class="header-item">
+            <input type="text" name="mod" placeholder="Modifications">
+            <input type="submit" name="button_mods" value="Enter">
+          </div>
+
+          <div class="header-item">
+            <input type="submit" name="button_generate" value="Generate Recipe">
+          </div>
+
+        </form>
       </div>
-      <ul>
-        {% if number %}
-          <li>{{ number }}</li>
-        {% endif %}
-      </ul>
+
+        <div class="results">
+    <div>
+      {% if number %}
+        <p><strong>People:</strong> {{ number }}</p>
+      {% endif %}
     </div>
 
-    <div class="input-group">
-      <div class="input-row">
-        <input type="text" name="ingredients">
-        <input type="submit" name="button_ingredient" value="enter ingredients">
-      </div>
-      <ul>
-        {% for item in mylist[0].split(",") %}
-          <li>{{ item }}</li>
-        {% endfor %}
-      </ul>
+    <div>
+      {% if mylist %}
+        <strong>Ingredients:</strong>
+        <ul>
+          {% for item in mylist[0].split(",") %}
+            <li>{{ item }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
     </div>
 
-    <div class="input-group">
-      <div class="input-row">
-        <input type="text" name="mod">
-        <input type="submit" name="button_mods" value="enter modifications">
-      </div>
-      <ul>
-        {% for item in mods[0].split(",") %}
-          <li>{{ item }}</li>
-        {% endfor %}
-      </ul>
-    </div>
-    <div class="input-group">
-    <div class="input-row">
-    <input type="submit" name="button_generate" value="Generate Recipe">
+    <div>
+      {% if mods %}
+        <strong>Modifications:</strong>
+        <ul>
+          {% for item in mods[0].split(",") %}
+            <li>{{ item }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
     </div>
   </div>
-  </div>
-
-  
-</form>
-
-
+</div>
         <section class="recipes-grid">
         {% for dish in response[:4] %}
             <article class="recipe-card">

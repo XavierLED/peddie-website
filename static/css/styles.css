@@ -17,9 +17,9 @@
 body {
   margin: 0;
   padding: 48px;
-  background: #fff;
+  background: #fbf7f1;
   color: var(--ink);
-  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family: "Caveat", cursive;
   display: flex;
   flex-direction:column;       /* <-- stack */
   align-items:center;          /* center horizontally if you like */
@@ -65,8 +65,10 @@ body {
   border-bottom: 1px dotted var(--dotted);
   height: 16px;
 }
+header {
+  display: block;
+}
 
-/* Ingredients header with dotted leaders left/right */
 .ingredients-header {
   display: flex;
   align-items: center;
@@ -118,7 +120,7 @@ body {
 }
 
 @media print {
-  body { padding: 0; background: #fff; }
+  body { padding: 0; background: #646464; }
   .card { box-shadow: none; }
 }
 
@@ -133,7 +135,7 @@ body {
 
 /* each quadrant as a card */
 .recipe-card{
-  background:#fff;
+  background:#fbf7f1;
   border:1px solid #e6e6e6;
   border-radius:12px;
   padding:16px 18px;
@@ -183,36 +185,47 @@ body {
   }
 }
 
-.input-container {
+.app-header {
+    position: fixed;
+    top: 0;
+  z-index: 0;
   display: flex;
-  justify-content: center;  /* centers whole row */
-  gap: 20px;                /* space between each group */
-  margin-bottom: 20px;
-}
-
-.input-row {
-  display: flex;
-  gap: 8px;                 /* space between text box and button */
+  justify-content: center;
   align-items: center;
+  background-color: #F0E0C9;
+  color: rgb(84, 84, 84);
+  padding: 10px 20px;
+  width:100vw;
+  height:2.5vw;
+  box-sizing: boarder-box;
+
 }
 
-.input-row input[type="text"] {
+.header-form {
+  display: flex;
+  gap: 20px;
+}
+
+.header-item {
+  display: flex;
+  gap: 6px;
+}
+
+.header-item input[type="text"] {
   padding: 6px 8px;
-  width: 140px;             /* control text box width */
 }
 
-.input-row input[type="submit"] {
+.header-item input[type="submit"] {
   padding: 6px 12px;
   cursor: pointer;
 }
 
-.input-group {
-  display: flex;
-  flex-direction: column;   /* input row on top, list below */
-  align-items: flex-start;
+.content {
+  margin: 20px;
 }
 
-.input-group ul {
-  margin: 6px 0 0 0;
-  padding-left: 18px;
+.results {
+  display: flex;
+  color:#000000;
+  gap: 40px;   /* spacing between the sections */
 }
