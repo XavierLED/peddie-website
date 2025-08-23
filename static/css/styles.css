@@ -251,12 +251,23 @@ header {
 }
 
 .header-item input[type="text"] {
+  border-radius: 12px; 
   padding: 6px 8px;
+  border: 1px solid #ccc;
+  outline: none;
 }
 
 .header-item input[type="submit"] {
+  border-radius: 12px;
   padding: 6px 12px;
+  border: 1px solid #F0E0C9;
+  color:#000000;
+  background-color: #eed5b3;
   cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background-color: #e0e0e0;
 }
 
 .content {
@@ -270,7 +281,6 @@ header {
   gap: 170px;   
 }
 
-<<<<<<< HEAD
 .loader-container {
     display: flex;
     justify-content: center;
@@ -297,5 +307,10 @@ header {
         transform: rotate(360deg);
     }
 }
-=======
->>>>>>> eaa1d27e27133e4da657fd15ad595c2a8751a415
+
+@media print {
+  body * { visibility: hidden !important; }
+  #recipe-card, #recipe-card * { visibility: visible !important; }
+  #recipe-card { position: absolute; left: 0; top: 0; margin: 0; box-shadow: none; }
+  @page { size: auto; margin: 12mm; }
+}

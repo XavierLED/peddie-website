@@ -87,7 +87,7 @@
       </div>
         
     
-    <section class="card" role="document" aria-label="Recipe card">
+    <section id="recipe-card" class="card" role="document" aria-label="Recipe card">
     <h1 class="title">RECIPE</h1>
 
     <div class="meta">
@@ -137,5 +137,12 @@
       </div>
       </div>
   </section>
+
+  <button id="downloadCard">Download Recipe</button>
   </body>
 </html>
+  <script>
+  document.getElementById('downloadCard').addEventListener('click', () => {
+    window.print();
+  });
+  </script> 
