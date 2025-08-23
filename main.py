@@ -38,12 +38,14 @@ def main(number_people, ingredients, modifers):
         prompt=f"""I need suggestions for dishes for this many people: {number_people}, 
         I have these indredients with their ammounts: {ingredients},
         I have these requirments of the dish as well: {modifers},
-        show ammounts as well, assume user has basic spices or also include alternative spices where possible, 
+        show ammounts as well if not amounts were given for ingredients then create ammounts based on the amount of people, 
+        assume user has basic spices or also include alternative spices where possible, 
         show me at leaste more than 3 dishes but less than 10"""
     else:
         prompt=f"""i need suggestions for dishes for this many people: {number_people}, 
         i have these indredients with their ammounts: {ingredients}, 
-        show ammounts as well, assume user has basic spices or also include alternative spices where possible, 
+        show ammounts as well if not amounts were given for ingredients then create ammounts based on the amount of people, 
+        assume user has basic spices or also include alternative spices where possible, 
         show me at leaste more than 3 dishes but less than 10"""
 
     class Dish(BaseModel):
