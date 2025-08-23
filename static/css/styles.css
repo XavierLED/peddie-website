@@ -266,7 +266,15 @@ header {
   cursor: pointer;
 }
 
-input[type="submit"]:hover {
+button {
+  border-radius: 12px;
+  padding: 6px 12px;
+  border: 1px solid #F0E0C9;
+  color:#000000;
+  background-color: #eed5b3;
+  cursor: pointer;
+}
+button:hover {
   background-color: #e0e0e0;
 }
 
