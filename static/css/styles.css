@@ -210,9 +210,9 @@ header {
 }
 
 .app-header {
-    position: fixed;
-    top: 0;
-  z-index: 0;
+  position: fixed;
+  top: 0;
+  z-index: 1000;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -251,6 +251,6 @@ header {
 .results {
   display: flex;
   color:#000000;
-  gap: 40px;   /* spacing between the sections */
+  gap: 40px;   
 }
 
