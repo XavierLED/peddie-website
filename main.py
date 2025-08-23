@@ -14,7 +14,7 @@ recipe = ""
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    global mylist, mods, number, response
+    global mylist, mods, number, response, recipe
     if request.method == 'GET':
         return render_template('index.html', mylist=mylist, mods=mods, number=number, response=response)
 
@@ -45,7 +45,7 @@ def index():
                 response = main(number, mylist, mods)
 
         elif request.form['this_dish']:
-            recipe = pick_dish(request.form['this_dish'])
+            recipe = pick_dish(request.form['this_dish'],response,number)
 
         return render_template('index.html', mylist=mylist, mods=mods, response=response, number=number)
 
@@ -81,44 +81,24 @@ def main(number_people, ingredients, modifers):
     )
 
     # Use the response as a JSON string.
-    print(response.text)
-
     data=json.loads(response.text)
     return data
-def pick_dish(dish_picked):##dish picked is an int 0 in top left 3 in bottom right
-    valid_dish=False
-    while valid_dish==False:
-        dish=input("From list choose dish: ")
 
-        choices = [d["dish_name"] for d in data]
-        best_match, score, idx = process.extractOne(
-            dish, choices, scorer=fuzz.WRatio
-        )
-
-        if score < 60:  # threshold, tweak as needed
-            print("Couldn't find a close enough match. Try again.")
-        else:
-            selected = data[idx]
-            dish_name = selected["dish_name"]
-            ingredients = selected["valid_ingreients"]
-
-            print(f"\nYou picked: {dish_name} (match score: {score})")
-            print("ingredients:")
-            for item in ingredients:
-                print(f" - {item}")
-            valid_dish=True
-
-        
-    print(dish_name, ingredients)
+def pick_dish(dish_picked,response,number):##dish picked is an int 0 in top left 3 in bottom right
+    if response != "":
+        selected = response[int(dish_picked)]
+        dish_name = selected["dish_name"]
+        ingredients = selected["valid_ingredients"]
 
     class Recipe(BaseModel):
         dish: str
         recipe: list[str]
+        valid_ingredients: list[str]
 
     client = genai.Client()
     response = client.models.generate_content(
         model="gemini-2.5-flash-lite",
-        contents=f"""Ive choosen {dish_name} for {number_people} people, with only these {ingredients}, 
+        contents=f"""Ive choosen {dish_name} for {number} people, with only these {ingredients}, 
         if there are extra ingredients that the user does not state to have then do not try to use them only stick to ingredients they have entered or state them as extra needed ingredients, 
         give the enitre recipe""",
         config={
@@ -127,7 +107,9 @@ def pick_dish(dish_picked):##dish picked is an int 0 in top left 3 in bottom rig
         },
     )
     # Use the response as a JSON string.
-    return response.text
+    print(response.text)
+    data=json.loads(response.text)
+    return data
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', debug=True)
