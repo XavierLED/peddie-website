@@ -7,17 +7,28 @@ import json
 app = Flask(__name__, template_folder='html', static_folder='static', static_url_path='/')
 
 mylist = []
+mods = []
+number = 1
+response = ""
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'GET':
-        return render_template('index.html', mylist=mylist)
+        return render_template('index.html', mylist=mylist, response=response)
     else:
-        ingredients = request.form['ingredients']
-        mylist.append(ingredients)
-        return render_template('index.html', mylist=mylist)
+        if 'button_ingredient' in request.form:
+            ingredients = request.form['ingredients']
+            mylist.append(ingredients)
+            return render_template('index.html', mylist=mylist, mods=mods, response=response)
 
-
+        elif 'button_mods' in request.form:
+                mod = request.form['mod']
+                mods.append(mod)
+                return render_template('index.html', mylist=mylist, mods=mods, response=response)
+        elif 'button_generate' in request.form:
+            response = main(number, mylist, mods)
+        else:
+            return render_template('index.html', mylist=mylist, mods=mods, response=response)
 
 
 def main(number_people, ingredients, modifers):

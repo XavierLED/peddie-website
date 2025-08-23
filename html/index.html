@@ -8,17 +8,23 @@
     </head>
     <body>
         <h3>Start entering your ingredients :)</h3>
-        <form method="POST" action="{{ url_for('index') }}">
+        <form method="POST" action="{{ url_for('add_ingredient') }}">
             <input type"text" name="ingredients">
-            <button onclick="">enter ingredient</button><br>
+            <input type="submit" name = "button_ingredient" value="enter ingredients"><br>
+            <ul>
+                {% for item in mylist%}
+                <li> {{ item }}</li>
+                {% endfor %}
+            </ul><br>
+
+            <input type="text" name="mod">
+            <input type="submit" name="button_mods" value="enter modifications"><br>
+            <ul>
+                {% for item in mods%}
+                <li> {{ item }}</li>
+                {% endfor %}
+            </ul><br>
+            <input type="submit" name="button_generate" value="Generate Recipe"><br>
         </form>
-
-        <ul>
-            {% for item in mylist%}
-            <li> {{ item }}</li>
-            {% endfor %}
-        </ul><br>
-
-        <button onclick="generate">Generate Recipe</button>
     </body>
 </html>
