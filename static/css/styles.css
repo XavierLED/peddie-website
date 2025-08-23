@@ -62,9 +62,22 @@ body {
 }
 .dots {
   flex: 1;
+  position: relative;            
   border-bottom: 1px dotted var(--dotted);
   height: 16px;
 }
+
+.dots .value {
+  position: absolute;
+  left: 8px;                      /* adjust spacing from label */
+  top: 50%;
+  transform: translateY(-50%);    /* center vertically */
+  font-family: "Caveat", cursive;
+  font-size: 16px;
+  color: var(--ink);
+  background: transparent;
+}
+
 header {
   display: block;
 }
@@ -118,6 +131,17 @@ header {
     );
   background-clip: content-box;
 }
+
+.column ul {
+  padding-left: 0;
+  margin: 0;
+  padding-top: 6px;  
+}
+
+.column li {
+  line-height: var(--line-gap);  
+}
+
 
 @media print {
   body { padding: 0; background: #646464; }
@@ -229,3 +253,4 @@ header {
   color:#000000;
   gap: 40px;   /* spacing between the sections */
 }
+

@@ -89,13 +89,19 @@
 
       <div class="field">
         <span class="label">Title</span>
-        <span class="dots"></span>
+        <span class="dots">
+        {%if recipe != ""%}
+        <span class="value">{{ recipe[0].dish }}</span>
+        {%endif%}
+        </span>
       </div>
 
 
       <div class="field">
         <span class="label">Serves</span>
-        <span class="dots"></span>
+        <span class="dots">
+        <span class="value">{{ number }}</span>
+        </span>
       </div>
 
 
@@ -109,10 +115,26 @@
     </div>
 
     <div class="ruled">
-      <div class="column"></div>
-      <div class="column"></div>
-    </div>
+      <div class="column">
+      <ul>
+        {%if recipe!= ""%}
+      {% for ing in (recipe[0].valid_ingredients or []) %}
+      <li>{{ ing }}</li>
+      {% endfor %}
+      {%endif%}
+      </ul>
+      </div>
+
+      <div class="column">
+      <ul>
+        {%if recipe!= ""%}
+      {% for steps in (recipe[0].recipe or []) %}
+      <li>{{ steps }}</li>
+      {% endfor %}
+      {%endif%}
+      </ul>
+      </div>
+      </div>
   </section>
-<p>{{ recipe }}</p>
-    </body>
+  </body>
 </html>
