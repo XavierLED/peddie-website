@@ -270,7 +270,6 @@ header {
   gap: 170px;   
 }
 
-<<<<<<< HEAD
 .loader-container {
     display: flex;
     justify-content: center;
@@ -297,5 +296,3 @@ header {
         transform: rotate(360deg);
     }
 }
-=======
->>>>>>> eaa1d27e27133e4da657fd15ad595c2a8751a415
