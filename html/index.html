@@ -8,7 +8,7 @@
     </head>
     <body>
         <h3>Start entering your ingredients :)</h3>
-        <form method="POST" action="{{ url_for('add_ingredient') }}">
+        <form method="POST" action="{{ url_for('index') }}">
             <input type"text" name="ingredients">
             <input type="submit" name = "button_ingredient" value="enter ingredients"><br>
             <ul>
@@ -26,5 +26,8 @@
             </ul><br>
             <input type="submit" name="button_generate" value="Generate Recipe"><br>
         </form>
+        {% if response != 0 %}
+        <p>{{ response }}</p>
+        {% endif %}
     </body>
 </html>

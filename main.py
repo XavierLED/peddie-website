@@ -14,19 +14,20 @@ response = ""
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'GET':
-        return render_template('index.html', mylist=mylist, response=response)
+        return render_template('index.html', mylist=mylist, mods=mods)
     else:
         if 'button_ingredient' in request.form:
             ingredients = request.form['ingredients']
             mylist.append(ingredients)
-            return render_template('index.html', mylist=mylist, mods=mods, response=response)
+            return render_template('index.html', mylist=mylist, mods=mods)
 
         elif 'button_mods' in request.form:
                 mod = request.form['mod']
                 mods.append(mod)
-                return render_template('index.html', mylist=mylist, mods=mods, response=response)
+                return render_template('index.html', mylist=mylist, mods=mods)
         elif 'button_generate' in request.form:
             response = main(number, mylist, mods)
+            return render_template('index.html', mylist=mylist, mods=mods, response=response)
         else:
             return render_template('index.html', mylist=mylist, mods=mods, response=response)
 
@@ -63,7 +64,8 @@ def main(number_people, ingredients, modifers):
     print(response.text)
 
     data=json.loads(response.text)
-
+    return data
+def pick_dish():
     valid_dish=False
     while valid_dish==False:
         dish=input("From list choose dish: ")
