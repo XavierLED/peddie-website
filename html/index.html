@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="">
+<html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,7 +8,11 @@
     </head>
     <body>
         <h3>Start entering your ingredients :)</h3>
+
         <form method="POST" action="{{ url_for('index') }}">
+            <input type"text" name="number_people">
+            <input type="submit" name = "button_number" value="enter number of people"><br>
+
             <input type"text" name="ingredients">
             <input type="submit" name = "button_ingredient" value="enter ingredients"><br>
             <ul>
