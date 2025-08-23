@@ -1,3 +1,0 @@
-js
-    make loading animation for when its generating
-    make loading text for card
