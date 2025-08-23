@@ -73,11 +73,9 @@ def main(number_people, ingredients, modifers):
         },
     )
 
-    # Use the response as a JSON string.
-    print(response.text)
-
     data=json.loads(response.text)
     return data
+
 def pick_dish():
     valid_dish=False
     while valid_dish==False:

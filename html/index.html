@@ -39,6 +39,7 @@
         <section class="recipes-grid">
         {% for dish in response[:4] %}
             <article class="recipe-card">
+            <input type="submit" name="this_dish", value="Choose this Dish">
             <h3 class="recipe-title">{{ dish.dish_name }}</h3>
             <ul class="recipe-ings">
                 {% for ing in (dish.valid_ingredients or []) %}
