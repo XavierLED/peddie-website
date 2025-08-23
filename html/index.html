@@ -10,26 +10,27 @@
         <h3>Start entering your ingredients :)</h3>
 
         <form method="POST" action="{{ url_for('index') }}">
-        <div class="input-container">
-          <div class="input-row">
-              <input type="text" name="number_people">
-              <input type="submit" name="button_number" value="enter number of people">
-          </div>
+            <input type"text" name="number_people">
+            <input type="submit" name = "button_number" value="enter number of people"><br>
+            <ul>
+                <li> {{ number }}</li>
+            </ul><br>
+            <input type"text" name="ingredients">
+            <input type="submit" name = "button_ingredient" value="enter ingredients"><br>
+            <ul>
+                {% for item in mylist%}
+                <li> {{ item }}</li>
+                {% endfor %}
+            </ul><br>
 
-          <div class="input-row">
-              <input type="text" name="ingredients">
-              <input type="submit" name="button_ingredient" value="enter ingredients">
-          </div>
-
-          <div class="input-row">
-              <input type="text" name="mod">
-              <input type="submit" name="button_mods" value="enter modifications">
-          </div>
-
-          <div class="input-row">
-              <input type="submit" name="button_generate" value="Generate Recipe">
-          </div>
-        </div>
+            <input type="text" name="mod">
+            <input type="submit" name="button_mods" value="enter modifications"><br>
+            <ul>
+                {% for item in mods%}
+                <li> {{ item }}</li>
+                {% endfor %}
+            </ul><br>
+            <input type="submit" name="button_generate" value="Generate Recipe"><br>
         </form>
 
         <section class="recipes-grid">
