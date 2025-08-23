@@ -85,7 +85,7 @@ def get_dishes(number_people, ingredients, modifers):
     return data
 
 def pick_dish(dish_picked,response,number):##dish picked is an int 0 in top left 3 in bottom right
-    dish_name = "Unknown dish"
+    dish_name = ""
     ingredients = []
 
     if response != "":
