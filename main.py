@@ -6,8 +6,8 @@ import json
 
 app = Flask(__name__, template_folder='html', static_folder='static', static_url_path='/')
 
-mylist = []
-mods = []
+mylist = "" 
+mods = ""
 number = ""
 response = ""
 
@@ -19,18 +19,26 @@ def index():
     else:
 
         if 'button_ingredient' in request.form:
-            ingredients = request.form['ingredients'].strip()
-            mylist=[ingredients]
+            if request.form['ingredients']:
+                mylist=[request.form['ingredients']]
+            else:
+                mylist = ""
 
         elif 'button_mods' in request.form:
-                mod = request.form['mod'].strip()
-                mods=[mod]
+            if request.form['mod']:
+                mods=[request.form['mod']]
+            else:
+                mods = ""
             
         elif 'button_number' in request.form:
-            number = request.form['number_people']
+            if request.form['number_people']:
+                number = request.form['number_people']
+            else:
+                number = ""
 
         elif 'button_generate' in request.form:
-            response = main(number, mylist, mods)
+            if mylist != "" and number != "":
+                response = main(number, mylist, mods)
 
         return render_template('index.html', mylist=mylist, mods=mods, response=response, number=number)
 

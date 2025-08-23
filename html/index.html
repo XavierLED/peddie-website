@@ -12,9 +12,11 @@
         <form method="POST" action="{{ url_for('index') }}">
             <input type"text" name="number_people">
             <input type="submit" name = "button_number" value="enter number of people"><br>
+            {% if number != "" %}
             <ul>
                 <li> {{ number }}</li>
             </ul><br>
+            {% endif %}
             <input type"text" name="ingredients">
             <input type="submit" name = "button_ingredient" value="enter ingredients"><br>
             <ul>
