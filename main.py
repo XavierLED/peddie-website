@@ -15,17 +15,11 @@ response = ""
 def index():
     global mylist, mods, number, response
     if request.method == 'GET':
-        print("GET request - mylist:", mylist, "mods:", mods, "number:", number, "response:", response)
         return render_template('index.html', mylist=mylist, mods=mods, number=number, response=response)
+
     else:
-        print("POST request received")
-        print("Form data:", dict(request.form))
-        print("Form keys:", list(request.form.keys()))
             
             # Check if form is empty (might indicate a different issue)
-        if not request.form:
-            print("WARNING: Empty form data - this might indicate a form submission issue")
-            return render_template('index.html', mylist=mylist, mods=mods, number=number, response=response)
 
         if 'button_ingredient' in request.form:
             if request.form['ingredients']:
@@ -48,6 +42,8 @@ def index():
         elif 'button_generate' in request.form:
             if mylist != "" and number != "":
                 response = main(number, mylist, mods)
+        elif 'this_dish' in request.form:
+            print("hello")
 
         return render_template('index.html', mylist=mylist, mods=mods, response=response, number=number)
 

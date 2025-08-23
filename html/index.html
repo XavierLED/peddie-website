@@ -67,6 +67,9 @@
         <section class="recipes-grid">
         {% for dish in response[:4] %}
             <article class="recipe-card">
+            <form method="POST" action="{{ url_for('index') }}" class="header-form">
+            <button name="this_dish" value={{ dish.dish_name }}>{{ dish.dish_name }}</button>
+            </form>
             <h3 class="recipe-title">{{ dish.dish_name }}</h3>
             <ul class="recipe-ings">
                 {% for ing in (dish.valid_ingredients or []) %}
