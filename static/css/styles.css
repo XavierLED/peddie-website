@@ -283,6 +283,7 @@ button:hover {
 }
 
 .results {
+  padding-top: 2.5%;
   display: flex;
   color:#000000;
   justify-content: space-between;
