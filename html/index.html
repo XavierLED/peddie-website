@@ -15,6 +15,7 @@
 <img src="/img/pizza1.png"/>
 </div>
 </div>
+        <!--adds each of the button for the header buttons and allows them to communicate with the back end if that makes sense-->
 
         <form method="POST" action="{{ url_for('index') }}" class="header-form">
 
@@ -40,6 +41,7 @@
         </form>
       </div>
 
+    <!--checks to see if each of the 3 inputs are empty and if they arent empty then it prints them in a list format-->
     <div class="results">
       <div>
         {% if number %}
@@ -70,6 +72,7 @@
       </div>
     </div>
     
+    <!-- creates a recipe card for each of the four dishes that the AI generates in a list like format -->
     <div class="recipes-grid">
       {% for dish in response %}
         <form method="POST" action="{{ url_for('index') }}">
