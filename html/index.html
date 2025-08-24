@@ -53,6 +53,9 @@
         {% if mylist %}
           <strong>Ingredients:</strong>
           <ul>
+                    <!-- Using jinga we are able to utilize python code within the html itself, so we create a for loop which splits the string into a list
+                         then lists each element in an html list -->
+
             {% for item in mylist[0].split(",") %}
               <li>{{ item }}</li>
             {% endfor %}
@@ -77,6 +80,8 @@
       {% for dish in response %}
         <form method="POST" action="{{ url_for('index') }}">
           <!-- one clickable card -->
+          <!-- Using jinga we loop through each dish and print dish name as a header and print each element of the ingredients as a list -->
+            <!-- we make this all a button so that it is click able and send the information to the backend -->
           <button type="submit" name="this_dish" value="{{ loop.index0 }}" class="recipe-card">
             <h3 class="recipe-title">{{ dish.dish_name }}</h3>
             <ul class="recipe-ings">
@@ -90,10 +95,12 @@
       </div>
         
     
+    <!-- its a big container containing all the other peices of the recipe card inside of it, such as the lines, dots, and words -->
     <section id="recipe-card" class="card" role="document" aria-label="Recipe card">
     <h1 class="title">RECIPE</h1>
 
     <div class="meta">
+    <!-- Holding the name and the number of people this serves in the recipe header -->
 
       <div class="field">
         <span class="label">Title</span>
@@ -112,15 +119,20 @@
       </div>
     </div>
 
+
     <div class="ingredients-header" aria-hidden="true">
       <div class="leader"></div>
       <div>Ingredients</div>
       <div class="leader"></div>
     </div>
 
+        <!-- this contains two classes of columns to make both of the ingredients and instructions be displayed in a list format-->
+
     <div class="ruled">
       <div class="column">
       <ul>
+                    <!-- using the flask feature jinga we are able to create a for loop which goes through each list element and lists the element, 
+                         the same thing for the next for loop below -->
         {%if recipe!= ""%}
       {% for ing in (recipe[0].valid_ingredients or []) %}
       <li>{{ ing }}</li>
